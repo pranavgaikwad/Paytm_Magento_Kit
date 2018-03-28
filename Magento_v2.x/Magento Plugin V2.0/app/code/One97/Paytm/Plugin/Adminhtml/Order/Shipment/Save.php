@@ -42,7 +42,7 @@ class Save
         if(!$order) {
             $this->_logger->debug("Order not found");
         } else {
-            if (!$order->canUnhold() || !$order->canShip() || !$order->isCanceled() || !$order->canInvoice()) {
+            if (!$order->canUnhold() && !$order->canShip() && !$order->isCanceled() && !$order->canInvoice()) {
                 if($order->getStatus() != $order::STATE_COMPLETE) {
                     $order->setStatus($order::STATE_COMPLETE);
                     $order->setState($order::STATE_COMPLETE);
